@@ -3,47 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>Elton Mwecha</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background: #111;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .container {
-      padding: 40px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .section {
-      margin-bottom: 40px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #fff;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #E6F1FB; color: #042C53; }
+
+    header { background: #0C447C; color: #fff; padding: 28px 40px 20px; text-align: center; }
+    header h1 { color: #fff; font-size: 24px; margin-bottom: 4px; }
+    header p { color: #B5D4F4; font-size: 14px; }
+
+    nav { background: #185FA5; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; padding: 8px 20px; position: sticky; top: 0; z-index: 100; }
+    nav button { background: transparent; color: #B5D4F4; border: none; padding: 10px 22px; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px; transition: background 0.2s, color 0.2s; }
+    nav button:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    nav button.active { background: #0C447C; color: #fff; }
+
+    .tab { display: none; animation: fadeIn 0.25s ease; }
+    .tab.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .container { padding: 50px 40px; max-width: 1000px; margin: auto; }
+    h2 { font-size: 20px; font-weight: 500; color: #0C447C; margin-bottom: 20px; border-left: 4px solid #378ADD; padding-left: 12px; }
+
+    .card { background: #fff; padding: 24px; border-radius: 10px; border: 0.5px solid #85B7EB; margin-bottom: 20px; }
+    .card p { font-size: 15px; line-height: 1.8; color: #042C53; }
+    .card h3 { font-size: 16px; font-weight: 500; color: #0C447C; margin-bottom: 8px; }
+
+    /* About layout */
+    .about-top { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 20px; }
+    .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #378ADD; flex-shrink: 0; background: #B5D4F4; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #0C447C; text-align: center; overflow: hidden; }
+    .profile-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .profile-placeholder { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #378ADD; flex-shrink: 0; background: #B5D4F4; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #0C447C; text-align: center; padding: 10px; }
+    .about-text p { font-size: 15px; line-height: 1.8; color: #042C53; }
+    @media (max-width: 600px) { .about-top { flex-direction: column; align-items: center; } }
+
+    .highlights { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-top: 20px; }
+    .highlight { background: #E6F1FB; border: 0.5px solid #85B7EB; border-radius: 8px; padding: 16px; }
+    .highlight h4 { font-size: 12px; font-weight: 500; color: #0C447C; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .highlight p { font-size: 14px; color: #185FA5; line-height: 1.6; }
+
+    /* Projects */
+    .project-card { background: #fff; padding: 0; border-radius: 10px; border: 0.5px solid #85B7EB; margin-bottom: 20px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; overflow: hidden; }
+    .project-card:hover { transform: scale(1.01); box-shadow: 0 4px 16px rgba(55,138,221,0.15); }
+    .project-img { width: 100%; height: 180px; object-fit: cover; display: block; background: #B5D4F4; }
+    .project-img-placeholder { width: 100%; height: 180px; background: #B5D4F4; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #0C447C; border-bottom: 0.5px solid #85B7EB; }
+    .project-body { padding: 20px; }
+    .project-body h3 { font-size: 16px; font-weight: 500; color: #0C447C; margin-bottom: 6px; }
+    .summary { font-size: 14px; color: #185FA5; margin-bottom: 8px; }
+    .badge { display: inline-block; background: #E6F1FB; color: #0C447C; font-size: 12px; padding: 3px 10px; border-radius: 20px; border: 0.5px solid #85B7EB; margin-right: 6px; margin-top: 6px; }
+    .toggle-hint { font-size: 12px; color: #85B7EB; margin-top: 10px; }
+    .detail { margin-top: 14px; padding-top: 14px; border-top: 0.5px solid #B5D4F4; font-size: 15px; color: #042C53; line-height: 1.7; display: none; }
+    .detail.open { display: block; }
+
+    /* Skills */
+    .skill-row { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+    .skill-name { font-size: 14px; color: #042C53; min-width: 120px; }
+    .skill-bar-bg { flex: 1; background: #E6F1FB; border-radius: 20px; height: 8px; border: 0.5px solid #B5D4F4; }
+    .skill-bar { height: 8px; border-radius: 20px; background: #378ADD; }
+    .skill-level { font-size: 12px; color: #185FA5; min-width: 80px; text-align: right; }
+
+    /* Contact */
+    .contact-row { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 0.5px solid #E6F1FB; }
+    .contact-row:last-of-type { border-bottom: none; }
+    .contact-row.preferred { background: #E6F1FB; border-radius: 8px; padding: 16px 14px; margin-bottom: 4px; border-bottom: none; }
+    .preferred-tag { font-size: 11px; background: #378ADD; color: #fff; border-radius: 20px; padding: 2px 8px; margin-left: 8px; vertical-align: middle; }
+    .contact-icon { width: 38px; height: 38px; background: #E6F1FB; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; color: #185FA5; font-weight: bold; border: 0.5px solid #85B7EB; }
+    .contact-label { font-size: 12px; color: #185FA5; margin-bottom: 2px; }
+    .contact-value { font-size: 15px; color: #042C53; }
+    .contact-value a { color: #185FA5; text-decoration: none; }
+    .contact-value a:hover { text-decoration: underline; }
+
+    footer { text-align: center; padding: 20px; background: #0C447C; color: #B5D4F4; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -51,45 +80,202 @@
 <header>
   <h1>Elton Mwecha</h1>
   <p>Student | Finance | Creative Projects</p>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
 </header>
 
-<div class="container">
-  <section id="about" class="section">
+<nav>
+  <button class="active" onclick="showTab('about', this)">About</button>
+  <button onclick="showTab('projects', this)">Projects</button>
+  <button onclick="showTab('skills', this)">Skills</button>
+  <button onclick="showTab('contact', this)">Contact</button>
+</nav>
+
+<!-- ABOUT -->
+<div id="about" class="tab active">
+  <div class="container">
     <h2>About Me</h2>
     <div class="card">
-      <p>Write a short introduction about yourself here. Talk about your interests, goals, and what you're working on.</p>
+      <div class="about-top">
+        <!-- Replace images/profile.jpg with your actual photo file -->
+        <div class="profile-placeholder">
+          Replace with<br>your photo<br><br>
+          &lt;img src="images/profile.jpg"&gt;
+        </div>
+        <div class="about-text">
+          <p>Currently an undergraduate Finance major with a minor in Economics, I am passionate about understanding how financial systems and economic policies shape real-world outcomes. I have actively participated in multiple case competitions and projects, including placing 4th in the 2026 Map the System competition and contributing to solutions on wildfire prevention, economic development, and innovation.</p>
+          <br>
+          <p>I also took part in the Haskayne School of Business Digital Innovation Case, collaborating with students from universities across different continents. In 2026, I contributed to the Economics Students Association Energy Economics case focused on diversifying Canada's energy market, and in 2025, I worked on a labour economics case addressing unemployment challenges for immigrants, minority groups, and students in Alberta in the face of AI.</p>
+          <br>
+          <p>Additionally, I volunteered as a Tax Reporter in 2026, where I was recognized as one of the most valuable contributors. I'm particularly interested in finance, digital marketing, and building creative projects like apps and online content, and I'm always looking for opportunities to grow and make a meaningful impact.</p>
+        </div>
+      </div>
     </div>
-  </section>
-
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="card">
-      <h3>Project 1</h3>
-      <p>Description of your project.</p>
+    <div class="highlights">
+      <div class="highlight">
+        <h4>Education</h4>
+        <p>Finance major, Economics minor — University of Alberta</p>
+      </div>
+      <div class="highlight">
+        <h4>Achievement</h4>
+        <p>4th place — 2026 Map the System competition</p>
+      </div>
+      <div class="highlight">
+        <h4>Volunteer</h4>
+        <p>Tax Reporter 2026 — recognized as top contributor</p>
+      </div>
+      <div class="highlight">
+        <h4>Interests</h4>
+        <p>Finance, digital marketing, app development & content</p>
+      </div>
     </div>
-    <div class="card">
-      <h3>Project 2</h3>
-      <p>Description of your project.</p>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <h2>Contact</h2>
-    <div class="card">
-      <p>Email: your@email.com</p>
-      <p>LinkedIn: your profile</p>
-    </div>
-  </section>
+  </div>
 </div>
 
-<footer>
-  <p>© 2026 Your Name</p>
-</footer>
+<!-- PROJECTS -->
+<div id="projects" class="tab">
+  <div class="container">
+    <h2>Projects</h2>
+
+    <div class="project-card" onclick="toggle('p1')">
+      <!-- Replace images/haven-app.jpg with your actual project image -->
+      <div class="project-img-placeholder">Replace with project image &lt;img src="images/haven-app.jpg"&gt;</div>
+      <div class="project-body">
+        <h3>Haven App</h3>
+        <p class="summary">Wildfire safety app for Jasper residents.</p>
+        <span class="badge">App Development</span>
+        <span class="badge">Public Safety</span>
+        <p class="toggle-hint" id="hint-p1">Click to expand</p>
+        <div id="p1" class="detail">
+          <p>This project focuses on helping Jasper residents stay informed and safe during wildfires using real-time data and alerts. The app provides timely notifications, evacuation routes, and local safety resources to help communities respond quickly to wildfire threats.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="toggle('p2')">
+      <!-- Replace images/case-competitions.jpg with your actual project image -->
+      <div class="project-img-placeholder">Replace with project image &lt;img src="images/case-competitions.jpg"&gt;</div>
+      <div class="project-body">
+        <h3>Case Competitions</h3>
+        <p class="summary">Economics & Enactus competitions addressing real-world challenges.</p>
+        <span class="badge">Economics</span>
+        <span class="badge">Strategy</span>
+        <span class="badge">Enactus</span>
+        <p class="toggle-hint" id="hint-p2">Click to expand</p>
+        <div id="p2" class="detail">
+          <p>Worked on real-world problems including wildfire prevention, youth unemployment, and economic development strategies. Participated in the Haskayne Digital Innovation Case with international collaborators, the ESA Energy Economics case on diversifying Canada's energy market, and a labour economics case on AI-driven unemployment in Alberta.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="toggle('p3')">
+      <!-- Replace images/map-the-system.jpg with your actual project image -->
+      <div class="project-img-placeholder">Replace with project image &lt;img src="images/map-the-system.jpg"&gt;</div>
+      <div class="project-body">
+        <h3>Map the System 2026</h3>
+        <p class="summary">Placed 4th in a systems-thinking competition.</p>
+        <span class="badge">Systems Thinking</span>
+        <span class="badge">Research</span>
+        <p class="toggle-hint" id="hint-p3">Click to expand</p>
+        <div id="p3" class="detail">
+          <p>Contributed to a team that placed 4th in the 2026 Map the System competition. The project involved analyzing complex social or environmental systems and proposing evidence-based, sustainable solutions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="tab">
+  <div class="container">
+    <h2>Skills</h2>
+    <div class="card">
+      <h3>Data & Analytics</h3>
+      <br>
+      <div class="skill-row">
+        <span class="skill-name">Excel</span>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div>
+        <span class="skill-level">Advanced</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Tableau</span>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div>
+        <span class="skill-level">Advanced</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">SQL</span>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:60%"></div></div>
+        <span class="skill-level">Intermediate</span>
+      </div>
+      <p style="margin-top:16px">I have experience working with data visualization, database querying, and financial/data analysis to support decision-making and problem-solving in case competitions and projects.</p>
+    </div>
+    <div class="card">
+      <h3>Other Skills</h3>
+      <br>
+      <div class="skill-row">
+        <span class="skill-name">Finance</span>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:85%"></div></div>
+        <span class="skill-level">Advanced</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Economics</span>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
+        <span class="skill-level">Advanced</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Digital Marketing</span>
+        <div class="skill-bar-bg"><div class="skill-bar" style="width:65%"></div></div>
+        <span class="skill-level">Intermediate</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="tab">
+  <div class="container" style="max-width:700px">
+    <h2>Contact</h2>
+    <div class="card">
+      <div class="contact-row preferred">
+        <div class="contact-icon">&#9993;</div>
+        <div>
+          <div class="contact-label">University Email <span class="preferred-tag">Preferred</span></div>
+          <div class="contact-value"><a href="mailto:mwecha@ualberta.ca">mwecha@ualberta.ca</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">&#9993;</div>
+        <div>
+          <div class="contact-label">Personal Email</div>
+          <div class="contact-value"><a href="mailto:Tadiwamwecha@gmail.com">Tadiwamwecha@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon">in</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value"><a href="https://www.linkedin.com/in/elton-mwecha/" target="_blank">linkedin.com/in/elton-mwecha</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><p>&#169; 2026 Elton Mwecha</p></footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function toggle(id) {
+    var el = document.getElementById(id);
+    var hint = document.getElementById('hint-' + id);
+    el.classList.toggle('open');
+    hint.textContent = el.classList.contains('open') ? 'Click to collapse' : 'Click to expand';
+  }
+</script>
 
 </body>
 </html>
